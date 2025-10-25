@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StatCard from '../StatCard';
-import { AuthMode, UserType, LeadershipMessage } from '../../types';
+import { AuthMode, UserType, LeadershipMessage, Testimonial } from '../../types';
 
 interface HomeProps {
     studentCount: number;
@@ -9,6 +9,7 @@ interface HomeProps {
     registrationMessage: string;
     leadershipMessages: LeadershipMessage[];
     heroImageUrls: string[];
+    approvedTestimonials: Testimonial[];
 }
 
 const UsersIcon: React.FC = () => (
@@ -48,7 +49,7 @@ const PortalCard: React.FC<PortalCardProps> = ({ title, description, icon, onLog
 );
 
 
-const Home: React.FC<HomeProps> = ({ studentCount, staffCount, openAuthModal, registrationMessage, leadershipMessages, heroImageUrls }) => {
+const Home: React.FC<HomeProps> = ({ studentCount, staffCount, openAuthModal, registrationMessage, leadershipMessages, heroImageUrls, approvedTestimonials }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -141,6 +142,30 @@ const Home: React.FC<HomeProps> = ({ studentCount, staffCount, openAuthModal, re
           </div>
         </div>
       </section>
+
+       {/* Testimonials Section */}
+      {approvedTestimonials.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-extrabold text-school-blue sm:text-4xl">What Our Community Says</h2>
+              <p className="mt-4 text-lg text-gray-600">Stories from the heart of our school.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {approvedTestimonials.map(testimonial => (
+                <div key={testimonial.id} className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center text-center">
+                  <img className="w-24 h-24 rounded-full object-cover mb-4 shadow-md" src={testimonial.imageUrl} alt={testimonial.name} />
+                  <p className="text-gray-600 italic flex-grow">"{testimonial.message}"</p>
+                  <div className="mt-4">
+                    <h4 className="font-bold text-school-blue">{testimonial.name}</h4>
+                    <p className="text-sm text-school-gold capitalize">{testimonial.category}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Stats Section */}
       <section className="py-20">

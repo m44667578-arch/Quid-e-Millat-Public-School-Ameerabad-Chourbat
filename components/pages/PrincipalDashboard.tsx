@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { User, SchoolEvent, Notice, Grade, AdmissionApplication, GalleryItem, ResultSubject, LeadershipMessage, ResultSheet, StructuredResult, SiteImages } from '../../types';
+import { User, SchoolEvent, Notice, Grade, AdmissionApplication, GalleryItem, ResultSubject, LeadershipMessage, ResultSheet, StructuredResult, SiteImages, Testimonial } from '../../types';
 
 declare const XLSX: any; // Using XLSX from a CDN script
 
@@ -29,6 +29,11 @@ interface PrincipalDashboardProps {
   onUpdateLeadershipMessage: (message: LeadershipMessage) => void;
   siteImages: SiteImages;
   onUpdateSiteImages: (images: SiteImages) => void;
+  pendingTestimonials: Testimonial[];
+  approvedTestimonials: Testimonial[];
+  onApproveTestimonial: (testimonialId: string) => void;
+  onDenyTestimonial: (testimonialId: string) => void;
+  onDeleteTestimonial: (testimonialId: string) => void;
 }
 
 const PrincipalDashboard: React.FC<PrincipalDashboardProps> = (props) => {
@@ -36,7 +41,7 @@ const PrincipalDashboard: React.FC<PrincipalDashboardProps> = (props) => {
     studentCount, staffCount, setStudentCount, setStaffCount, pendingUsers, onApproveUser, onDenyUser, 
     approvedUsers, events, onSaveEvent, onDeleteEvent, notices, onPostNotice, resultSheets, onAddResultSheet, onDeleteResultSheet,
     admissionApplications, onAcknowledgeAdmission, galleryItems, onAddGalleryItem, onDeleteGalleryItem, leadershipMessages, onUpdateLeadershipMessage,
-    siteImages, onUpdateSiteImages
+    siteImages, onUpdateSiteImages, pendingTestimonials, approvedTestimonials, onApproveTestimonial, onDenyTestimonial, onDeleteTestimonial
   } = props;
   
   const [activeTab, setActiveTab] = useState('stats');
@@ -314,6 +319,7 @@ const PrincipalDashboard: React.FC<PrincipalDashboardProps> = (props) => {
         <TabButton tabKey="users" label="Approve Users" count={pendingUsers.length} />
         <TabButton tabKey="approved_accounts" label="Approved Accounts" />
         <TabButton tabKey="admissions" label="Admissions" count={unacknowledgedAdmissionsCount} />
+        <TabButton tabKey="testimonials" label="Testimonials" count={pendingTestimonials.length} />
         <TabButton tabKey="events" label="Events" />
         <TabButton tabKey="notices" label="Notices" />
         <TabButton tabKey="results" label="Results" />
@@ -411,6 +417,34 @@ const PrincipalDashboard: React.FC<PrincipalDashboardProps> = (props) => {
                 </div>
             </form>
             ))}
+        </div>
+      );
+       case 'testimonials': return (
+        <div className="space-y-8">
+            <div className="card-style">
+                <h3 className="card-title">Pending Testimonials ({pendingTestimonials.length})</h3>
+                {pendingTestimonials.length === 0 ? <p className="text-center text-gray-500">No testimonials are currently pending approval.</p> : (
+                    <ul className="space-y-4">{pendingTestimonials.map(t => (
+                        <li key={t.id} className="p-4 border rounded-lg flex flex-col sm:flex-row items-start gap-4">
+                            <img src={t.imageUrl} alt={t.name} className="w-20 h-20 rounded-full object-cover flex-shrink-0" />
+                            <div className="flex-grow"><p className="font-bold">{t.name} <span className="text-sm font-normal text-gray-500 capitalize">({t.category})</span></p><p className="text-sm text-gray-700 italic mt-1">"{t.message}"</p></div>
+                            <div className="flex space-x-2 mt-2 sm:mt-0 self-end sm:self-center flex-shrink-0"><button onClick={() => onApproveTestimonial(t.id)} className="btn-success">Approve</button><button onClick={() => onDenyTestimonial(t.id)} className="btn-danger">Deny</button></div>
+                        </li>
+                    ))}</ul>
+                )}
+            </div>
+            <div className="card-style">
+                <h3 className="card-title">Approved Testimonials ({approvedTestimonials.length})</h3>
+                 {approvedTestimonials.length === 0 ? <p className="text-center text-gray-500">No testimonials have been approved yet.</p> : (
+                    <ul className="space-y-4">{approvedTestimonials.map(t => (
+                        <li key={t.id} className="p-4 border rounded-lg flex flex-col sm:flex-row items-start gap-4 bg-green-50">
+                             <img src={t.imageUrl} alt={t.name} className="w-20 h-20 rounded-full object-cover flex-shrink-0" />
+                            <div className="flex-grow"><p className="font-bold">{t.name} <span className="text-sm font-normal text-gray-500 capitalize">({t.category})</span></p><p className="text-sm text-gray-700 italic mt-1">"{t.message}"</p></div>
+                            <div className="flex items-center flex-shrink-0 self-end sm:self-center"><button onClick={() => onDeleteTestimonial(t.id)} className="btn-danger">Delete</button></div>
+                        </li>
+                    ))}</ul>
+                )}
+            </div>
         </div>
       );
       case 'content': return (

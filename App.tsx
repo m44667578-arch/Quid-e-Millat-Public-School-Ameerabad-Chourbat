@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { Page, User, AuthModalState, UserType, AuthMode, SchoolEvent, Notice, ResultSheet, Complaint, Grade, GalleryItem, AdmissionApplication, LeadershipMessage, SiteImages } from './types';
+import React, { useState, useCallback, useMemo } from 'react';
+import { Page, User, AuthModalState, UserType, AuthMode, SchoolEvent, Notice, ResultSheet, Complaint, Grade, GalleryItem, AdmissionApplication, LeadershipMessage, SiteImages, Testimonial } from './types';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/pages/Home';
@@ -9,6 +9,7 @@ import Events from './components/pages/Events';
 import Gallery from './components/pages/Gallery';
 import Admission from './components/pages/Admission';
 import Contact from './components/pages/Contact';
+import Testimonials from './components/pages/Testimonials';
 import PrincipalDashboard from './components/pages/PrincipalDashboard';
 import StudentDashboard from './components/pages/StudentDashboard';
 import ParentDashboard from './components/pages/ParentDashboard';
@@ -46,6 +47,10 @@ const App: React.FC = () => {
   const [complaints, setComplaints] = useState<Complaint[]>([]);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(galleryData);
   const [admissionApplications, setAdmissionApplications] = useState<AdmissionApplication[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  const pendingTestimonials = useMemo(() => testimonials.filter(t => t.status === 'pending'), [testimonials]);
+  const approvedTestimonials = useMemo(() => testimonials.filter(t => t.status === 'approved'), [testimonials]);
 
   const initialLeadershipMessages: LeadershipMessage[] = [
     {
@@ -240,6 +245,29 @@ const App: React.FC = () => {
     alert('Website images have been updated successfully!');
   };
 
+  const handleTestimonialSubmit = (testimonial: Omit<Testimonial, 'id' | 'status'>) => {
+    const newTestimonial = { ...testimonial, id: `testimonial-${Date.now()}`, status: 'pending' as const };
+    setTestimonials(prev => [newTestimonial, ...prev]);
+    alert('Thank you for your submission! Your testimonial is now pending approval by the principal.');
+    setCurrentPage(Page.Home);
+  };
+
+  const handleApproveTestimonial = (testimonialId: string) => {
+    setTestimonials(prev => prev.map(t => t.id === testimonialId ? { ...t, status: 'approved' } : t));
+  };
+
+  const handleDenyTestimonial = (testimonialId: string) => {
+    if (window.confirm('Are you sure you want to deny and delete this pending testimonial?')) {
+      setTestimonials(prev => prev.filter(t => t.id !== testimonialId));
+    }
+  };
+  
+  const handleDeleteTestimonial = (testimonialId: string) => {
+    if (window.confirm('Are you sure you want to delete this approved testimonial? It will be removed from the homepage.')) {
+      setTestimonials(prev => prev.filter(t => t.id !== testimonialId));
+    }
+  };
+
 
   const navigate = useCallback((page: Page) => {
     setCurrentPage(page);
@@ -248,7 +276,7 @@ const App: React.FC = () => {
   }, []);
 
   const renderPage = () => {
-    const homeProps = { studentCount, staffCount, openAuthModal, registrationMessage, leadershipMessages, heroImageUrls: siteImages.heroImageUrls };
+    const homeProps = { studentCount, staffCount, openAuthModal, registrationMessage, leadershipMessages, heroImageUrls: siteImages.heroImageUrls, approvedTestimonials };
     switch (currentPage) {
       case Page.Home:
         return <Home {...homeProps} />;
@@ -262,6 +290,8 @@ const App: React.FC = () => {
         return <Gallery galleryItems={galleryItems} />;
       case Page.Admissions:
         return <Admission onAdmissionSubmit={handleAdmissionSubmit} />;
+       case Page.Testimonials:
+        return <Testimonials onTestimonialSubmit={handleTestimonialSubmit} />;
       case Page.Contact:
         return <Contact contactImageUrl={siteImages.contactImageUrl} />;
       case Page.PrincipalDashboard:
@@ -292,6 +322,11 @@ const App: React.FC = () => {
             onUpdateLeadershipMessage={handleUpdateLeadershipMessage}
             siteImages={siteImages}
             onUpdateSiteImages={handleUpdateSiteImages}
+            pendingTestimonials={pendingTestimonials}
+            approvedTestimonials={approvedTestimonials}
+            onApproveTestimonial={handleApproveTestimonial}
+            onDenyTestimonial={handleDenyTestimonial}
+            onDeleteTestimonial={handleDeleteTestimonial}
           />
         ) : <Home {...homeProps} />;
       case Page.StudentDashboard:

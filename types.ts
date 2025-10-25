@@ -5,6 +5,7 @@ export enum Page {
   Events = 'EVENTS',
   Gallery = 'GALLERY',
   Admissions = 'ADMISSIONS',
+  Testimonials = 'TESTIMONIALS',
   Contact = 'CONTACT',
   PrincipalDashboard = 'PRINCIPAL_DASHBOARD',
   StudentDashboard = 'STUDENT_DASHBOARD',
@@ -144,4 +145,15 @@ export interface SiteImages {
   heroImageUrls: string[];
   aboutImageUrl: string;
   contactImageUrl: string;
+}
+
+export type TestimonialCategory = 'student' | 'parent' | 'alumni' | 'other';
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  category: TestimonialCategory;
+  message: string;
+  imageUrl: string;
+  status: 'pending' | 'approved';
 }

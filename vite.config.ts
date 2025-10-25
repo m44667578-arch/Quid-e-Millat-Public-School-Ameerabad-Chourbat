@@ -16,7 +16,8 @@ export default defineConfig(({ mode }) => {
       },
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '.'),
+          // Correct: Replace __dirname with process.cwd() for ES module compatibility in Vite config.
+          '@': path.resolve(process.cwd(), '.'),
         }
       }
     };

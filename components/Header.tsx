@@ -44,6 +44,7 @@ const Header: React.FC<HeaderProps> = ({ navigate, user, onLogout, logoUrl }) =>
     { page: Page.VisionMotive, label: 'Vision & Motive' },
     { page: Page.Events, label: 'Events' },
     { page: Page.Gallery, label: 'Gallery' },
+    { page: Page.Testimonials, label: 'Testimonials' },
     { page: Page.Admissions, label: 'Admissions' },
     { page: Page.Contact, label: 'Contact' },
   ];
