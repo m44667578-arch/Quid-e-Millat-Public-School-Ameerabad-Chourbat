@@ -1,0 +1,6 @@
+# Robots.txt for Quid-e-Millat Public School website
+
+User-agent: *
+Allow: /
+
+Sitemap: https://quid-e-millat-public-school-ameerab-six.vercel.app/sitemap.xml
