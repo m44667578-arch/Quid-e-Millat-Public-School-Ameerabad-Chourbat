@@ -1,40 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset>
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+// copy-sitemap.js
+const fs = require('fs');
+const path = require('path');
 
-  <!-- Home Page -->
-  <url>
-    <loc>https://quid-e-millat-public-school-ameerab-six.vercel.app/</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+const src = path.join(__dirname, 'sitemap.xml');
+const destDir = path.join(__dirname, 'dist');
+const dest = path.join(destDir, 'sitemap.xml');
 
-  <!-- About Page -->
-  <url>
-    <loc>https://quid-e-millat-public-school-ameerab-six.vercel.app/about</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+if (!fs.existsSync(src)) {
+  console.error('sitemap.xml not found in project root.');
+  process.exit(1);
+}
+if (!fs.existsSync(destDir)) {
+  console.error('dist folder not found — run build first.');
+  process.exit(1);
+}
 
-  <!-- Admissions Page -->
-  <url>
-    <loc>https://quid-e-millat-public-school-ameerab-six.vercel.app/admissions</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Contact Page -->
-  <url>
-    <loc>https://quid-e-millat-public-school-ameerab-six.vercel.app/contact</loc>
-    <lastmod>2025-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-</urlset>
+fs.copyFileSync(src, dest);
+console.log('Copied sitemap.xml -> dist/sitemap.xml');
