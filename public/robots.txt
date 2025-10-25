@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://quid-e-millat-public-school-ameerab-six.vercel.app/sitemap.xml
