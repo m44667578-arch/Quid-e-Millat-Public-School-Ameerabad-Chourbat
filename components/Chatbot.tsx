@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 // Correct: Import GoogleGenAI and Modality to use the Gemini API.
-import { GoogleGenAI, Modality } from '@google/genai';
+
 import { ChatMessage } from '../types';
 import { decode, decodeAudioData } from '../utils/audio';
 
 // Correct: Initialize the GoogleGenAI client with the API key.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
 
 const Chatbot: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
