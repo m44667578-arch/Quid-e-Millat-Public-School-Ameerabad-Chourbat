@@ -28,8 +28,9 @@ const App: React.FC = () => {
   const [registrationMessage, setRegistrationMessage] = useState<string>('');
 
   const [siteImages, setSiteImages] = useState<SiteImages>({
-    logoUrl: '/images/homepage/image1.jpg',
+    logoUrl: '/images/homepage/logp.jpg',
     heroImageUrls: [
+      '/images/homepage/image1.jpg',
       '/images/homepage/dd.jpg',
       '/images/homepage/ds.jpg',
       '/images/homepage/pic1.jpg',
