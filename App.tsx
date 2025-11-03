@@ -28,11 +28,13 @@ const App: React.FC = () => {
   const [registrationMessage, setRegistrationMessage] = useState<string>('');
 
   const [siteImages, setSiteImages] = useState<SiteImages>({
-    logoUrl: 'https://i.imgur.com/3Y1Z2f5.png',
+    logoUrl: 'images/homepage/image1.jpg',
     heroImageUrls: [
-      'https://i.imgur.com/Oq1tA7o.jpeg',
-      'https://picsum.photos/1920/1080?image=1018',
-      'https://picsum.photos/1920/1080?image=1078'
+      'images/homepage/dd.jpg',
+      'images/homepage/ds.jpg',
+      'images/homepage/pic1.jpg',
+      'images/homepage/s.jpg',
+      'images/homepage/image.jpg'
     ],
     aboutImageUrl: 'https://i.imgur.com/Oq1tA7o.jpeg',
     contactImageUrl: 'https://i.imgur.com/Oq1tA7o.jpeg',
