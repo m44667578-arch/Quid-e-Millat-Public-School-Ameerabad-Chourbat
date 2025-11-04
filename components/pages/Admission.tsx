@@ -123,22 +123,25 @@ const Admission: React.FC<AdmissionProps> = ({ onAdmissionSubmit }) => {
       }
 
       await emailjs.send(
-        'service_loh252g',
-        'template_2kwzox7',
-        {
-          form_type: 'Admission Form',
-          full_name: formData.fullName,
-          guardian_name: formData.guardianName,
-          dob: formData.dob,
-          grade: formData.grade,
-          previous_school: formData.previousSchool,
-          address: formData.address,
-          whatsapp_number: formData.whatsappNumber,
-          email: formData.email,
-          image_urls: imageUrls.join(', ') || 'N/A',
-        },
-        'aJzbYEK498ObnVkKR'
-      );
+  'service_loh252g',
+  'template_2kwzox7',
+  {
+    form_type: 'Admission Form',
+    full_name: formData.fullName,
+    guardian_name: formData.guardianName,
+    dob: formData.dob,
+    grade: formData.grade,
+    previous_school: formData.previousSchool || 'N/A',
+    address: formData.address,
+    whatsapp_number: formData.whatsappNumber,
+    email: formData.email,
+    category: '',       // Not applicable
+    message: '',        // Not applicable
+    image_url: imageUrls.join(', ') || 'N/A',
+  },
+  'aJzbYEK498ObnVkKR'
+);
+
 
       alert('Admission form submitted successfully! Details have been sent to your email.');
     } catch (error) {

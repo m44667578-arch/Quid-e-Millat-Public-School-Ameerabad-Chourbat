@@ -180,18 +180,26 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onTestimonialSubmit }) => {
       const imageBase64 = reader.result as string;
 
       // Send data to EmailJS
-      emailjs
-        .send(
-          'service_loh252g', // your service ID
-          'template_2kwzox7', // your template ID
-          {
-            full_name: formData.name,
-            role: formData.category,
-            message: formData.message,
-            image_base64: imageBase64
-          },
-          'aJzbYEK498ObnVkKR' // your public key
-        )
+      emailjs.send(
+  'service_loh252g',
+  'template_2kwzox7',
+  {
+    form_type: 'Testimonial Form', // Specify the form type
+    full_name: formData.name,
+    guardian_name: '', // Not applicable for testimonial
+    dob: '',           // Not applicable for testimonial
+    grade: '',         // Not applicable for testimonial
+    previous_school: '', // Not applicable
+    address: '',       // Not applicable
+    whatsapp_number: '', // Not applicable
+    email: '',         // If you want to collect email, include it in your form
+    category: formData.category,
+    message: formData.message,
+    image_url: imageBase64 || 'N/A',
+  },
+  'aJzbYEK498ObnVkKR'
+);
+
         .then(
           () => {
             alert('✅ Testimonial submitted successfully!');

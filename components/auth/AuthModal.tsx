@@ -240,7 +240,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
+        setIsSubmitting(true);
 
         if (mode === 'register') {
             if (formData.password !== formData.confirmPassword) {
@@ -258,25 +258,57 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
             };
 
             // Trigger the EmailJS email on registration
-            try { 
-                await emailjs.send(
-                     'service_loh252g',
-        'template_2kwzox7',
-                    {
-                        full_name: newUser.fullName,
-                        email: newUser.email,
-                        password: newUser.password,
-                        role: newUser.userType,
-                        grade: newUser.grade || 'N/A',
-                        child_student_ids: newUser.childStudentIds ? newUser.childStudentIds.join(', ') : 'N/A'
-                    },
-                    'aJzbYEK498ObnVkKR'
-                );
-                console.log('Email sent successfully via EmailJS!');
-            } catch (err) {
-                console.error('Failed to send email via EmailJS:', err);
-            }
+            let imageBase64 = 'N/A';
+  if (imageFile) {
+    const reader = new FileReader();
+    imageBase64 = await new Promise<string>((resolve, reject) => {
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(imageFile);
+    });
+  }
 
+  emailjs.send(
+    'service_loh252g',
+    'template_2kwzox7',
+    {
+      form_type: 'Registration Form', // specify the form type
+      full_name: formData.fullName,
+      guardian_name: formData.guardianName,
+      dob: formData.dob,
+      grade: formData.grade,
+      previous_school: formData.previousSchool,
+      address: formData.address,
+      whatsapp_number: formData.whatsappNumber,
+      email: formData.email,
+      category: '',       // Not applicable
+      message: '',        // Not applicable
+      image_url: imageBase64 || 'N/A',
+    },
+    'aJzbYEK498ObnVkKR'
+  )
+  .then(() => {
+    alert('✅ Registration submitted successfully!');
+    // Reset form
+    setFormData({
+      fullName: '',
+      guardianName: '',
+      dob: '',
+      grade: Grade.PlayGroup,
+      previousSchool: '',
+      address: '',
+      whatsappNumber: '',
+      email: '',
+    });
+    setImageFile(null);
+    setImagePreview(null);
+  })
+  .catch((error) => {
+    console.error('EmailJS Error:', error);
+    alert('❌ Failed to send registration. Try again.');
+  })
+  .finally(() => setIsSubmitting(false));
+};
             onRegister(newUser);
         } else { // login
             // ... your original login logic remains untouched

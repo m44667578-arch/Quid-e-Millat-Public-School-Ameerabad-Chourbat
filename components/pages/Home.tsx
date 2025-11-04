@@ -185,10 +185,11 @@ const Home: React.FC<HomeProps> = ({ studentCount, staffCount, openAuthModal, re
                 <p className="mt-4 text-lg text-gray-600">A look into our vibrant campus life.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="https://picsum.photos/400/300?image=1018" alt="School building"/></div>
-                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="https://picsum.photos/400/300?image=1078" alt="Students in classroom"/></div>
-                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="https://picsum.photos/400/300?image=24" alt="Science lab"/></div>
-                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="https://picsum.photos/400/300?image=1062" alt="Sports day"/></div>
+                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/public/images/others/examhall1.jpg" alt="Pic During Paper"/></div>
+                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/public/images/others/art1.jpg" alt=" Art "/></div>
+                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/public/images/others/examhall2.jpg" alt="Exam Hall"/></div>
+                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/public/images/others/result1.jpg" alt="Result Day"/></div>
+                <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/public/images/others/result5.jpg" alt="Prize Getting"/></div>
             </div>
         </div>
       </section>

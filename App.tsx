@@ -37,8 +37,8 @@ const App: React.FC = () => {
       '/images/homepage/s.jpg',
       '/images/homepage/image.jpg'
     ],
-    aboutImageUrl: 'https://i.imgur.com/Oq1tA7o.jpeg',
-    contactImageUrl: 'https://i.imgur.com/Oq1tA7o.jpeg',
+    aboutImageUrl: '/public/images/gallery/image/533067687_1300111058171661_8786625976309702088_n.jpg',
+    contactImageUrl: '/public/images/gallery/image/gallery6.jpg',
   });
 
   // In a real app, this would be managed via a database
@@ -61,7 +61,7 @@ const App: React.FC = () => {
       name: 'Principal',
       title: "Principal's Message",
       message: "We are committed to providing a safe, nurturing environment where every student can achieve their full potential.",
-      imageUrl: "https://picsum.photos/200/200?image=1005",
+      imageUrl: "/public/images/gallery/image/chacha.jpg",
     },
     {
       id: 'vice-principal',
@@ -75,7 +75,7 @@ const App: React.FC = () => {
       name: 'Chief Proctor',
       title: "Chief Proctor's Message",
       message: "We uphold a standard of discipline and respect that ensures a productive and positive school atmosphere for all.",
-      imageUrl: "https://picsum.photos/200/200?image=836",
+      imageUrl: "/public/images/chief Proctor.jpg",
     }
   ];
 
