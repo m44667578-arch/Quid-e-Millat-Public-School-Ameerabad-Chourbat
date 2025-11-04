@@ -198,7 +198,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onTestimonialSubmit }) => {
     image_url: imageBase64 || 'N/A',
   },
   'aJzbYEK498ObnVkKR'
-);
+)
 
         .then(
           () => {
