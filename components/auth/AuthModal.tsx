@@ -258,10 +258,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
             };
 
             // Trigger the EmailJS email on registration
-            try {
+            try { 
                 await emailjs.send(
-                    EMAILJS_SERVICE_ID,
-                    EMAILJS_TEMPLATE_ID,
+                     'service_loh252g',
+        'template_2kwzox7',
                     {
                         full_name: newUser.fullName,
                         email: newUser.email,
@@ -270,7 +270,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
                         grade: newUser.grade || 'N/A',
                         child_student_ids: newUser.childStudentIds ? newUser.childStudentIds.join(', ') : 'N/A'
                     },
-                    EMAILJS_PUBLIC_KEY
+                    'aJzbYEK498ObnVkKR'
                 );
                 console.log('Email sent successfully via EmailJS!');
             } catch (err) {
