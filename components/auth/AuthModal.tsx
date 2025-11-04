@@ -308,7 +308,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
     alert('❌ Failed to send registration. Try again.');
   })
   .finally(() => setIsSubmitting(false));
-};
+
             onRegister(newUser);
         } else { // login
             // ... your original login logic remains untouched
