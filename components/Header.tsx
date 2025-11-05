@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ navigate, user, onLogout, logoUrl }) =>
           <div className={`flex items-center ${!user ? 'cursor-pointer' : ''}`} onClick={() => !user && handleNavClick(Page.Home)}>
             <SchoolLogo logoUrl={logoUrl} />
             <div className="ml-4">
-              <h1 className="text-xl md:text-2xl font-bold text-white tracking-wider">Quaid-e-Millat Public School</h1>
+              <h1 className="text-xl md:text-2xl font-bold text-white tracking-wider">Quaid-e-Millat Public School Ameerabad </h1>
               <p className="text-sm text-school-gold font-serif italic">"Enter to Learn, Leave to Lead"</p>
             </div>
           </div>

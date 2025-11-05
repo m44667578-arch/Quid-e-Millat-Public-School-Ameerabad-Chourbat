@@ -40,6 +40,17 @@ const VisionMotive: React.FC = () => {
               Our motive is to cultivate a love for learning by promoting academic excellence, character development, and lifelong learning skills. We foster critical thinking and encourage creativity within a supportive and inclusive community. We aim to empower students with the skills, knowledge, and strong moral values necessary to lead meaningful lives, meet the challenges of a rapidly changing world, and make positive contributions to society.
             </p>
           </div>
+          {/* Developer Section */}
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <div className="flex items-center mb-6">
+              <Developed/>
+              <h2 className="ml-4 text-3xl font-bold text-school-blue">Developed By : Malik Sheraz Hadi -- AI Specialist and Web Developer</h2>
+            </div>
+            <p className="text-gray-600 text-lg">
+              <a href="/developer.html">VIEW IS WORK </a>
+            </p>
+          </div>
+          
         </div>
       </div>
     </div>

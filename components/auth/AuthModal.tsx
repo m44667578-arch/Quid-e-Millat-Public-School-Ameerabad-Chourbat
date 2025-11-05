@@ -680,6 +680,22 @@ import React, { useState, useEffect, useRef } from "react";
 import { AuthModalState, User, UserType, AdminRole, Grade } from "../../types";
 import emailjs from "@emailjs/browser";
 
+interface AuthModalProps {
+    modalState: AuthModalState;
+    onClose: () => void;
+    onLoginSuccess: (user: User) => void;
+    onRegister: (newUser: Omit<User, 'id'>) => void;
+    approvedUsers: User[];
+}
+
+// Hardcoded secret values as per requirements
+const SCHOOL_MASTER_CODE = 'QMPS-512&786';
+const PRINCIPAL_NUMBER = '923555371125';
+const MOCK_PRINCIPAL_FULL_NAME = 'Principal QMPS';
+const MOCK_PRINCIPAL_EMAIL = 'principalqmps@gmail.com';
+const MOCK_PRINCIPAL_PASSWORD = 'principal512@512';
+
+
 // EmailJS constants (you can change if needed)
 const EMAILJS_SERVICE_ID = "service_loh252g";
 const EMAILJS_TEMPLATE_ID = "template_2kwzox7";

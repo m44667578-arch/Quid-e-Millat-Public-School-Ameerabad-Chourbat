@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Developer - Quaid-e-Millat Public School Ameerabad Regd.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(120deg, #e0eafc, #cfdef3);
+}
+header {
+  background: linear-gradient(90deg, #29b6f6, #1565c0);
+  color: #fff;
+  padding: 36px 0 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 20px #1112;
+}
+.navbar {
+  background: #1565c0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 8px #1112;
+  flex-wrap: wrap;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 24px;
+  font-weight: 500;
+  transition: background .3s, color .3s;
+  border-bottom: 2px solid transparent;
+  font-size: 1.1rem;
+  margin: 0 4px;
+}
+.navbar a.active, .navbar a:hover {
+  background: #29b6f6;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+main {
+  max-width: 900px;
+  margin: 32px auto 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px #aaa4;
+  padding: 32px 20px;
+  min-height: 60vh;
+}
+section {
+  margin-bottom: 36px;
+}
+h1, h2 {
+  color: #1565c0;
+  font-weight: bold;
+}
+.hero-imgs, .developer-images {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  height: 290px;
+}
+.hero-imgs img, .developer-images img {
+  max-width: 100%;
+  max-height: 290px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px #29b6f680;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0; margin: auto;
+}
+.hero-content { padding: 22px; text-align: center; }
+.user-portals { padding: 20px 0; }
+.portal-card-grid { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+.portal-card {
+  background: #e3f2fd;
+  border-radius: 10px;
+  padding: 18px 10px;
+  box-shadow: 0 2px 14px #29b6f650;
+  min-width: 230px; max-width: 290px;
+  text-align: center;
+}
+.portal-btn { background: #29b6f6; color: #fff; border: none; padding: 8px 22px; border-radius: 16px; margin: 0 4px; text-decoration: none; font-weight: 600; }
+.message-block, .message-row { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 10px; }
+.message-block img, .message-row img { width: 90px; border-radius: 50%; }
+.faculty-list { padding: 18px 0; }
+.faculty-grid { display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; }
+.faculty-card {
+  background: #f5fcff;
+  border-radius: 12px;
+  padding: 14px 14px;
+  box-shadow: 0 2px 14px #135edb33;
+  width: 185px;
+  text-align: center;
+}
+.faculty-img { width: 70px; border-radius: 50%; margin-bottom: 10px; }
+.testimonials-preview { padding: 18px 0; }
+#testimonial-carousel, .testimonials-carousel { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; }
+.carousel-testimonial {
+  background: #f2f6fd;
+  border-radius: 12px;
+  padding: 16px 10px;
+  box-shadow: 0 2px 14px #135edb33;
+  width: 210px;
+  text-align: center;
+}
+.testi-img { width: 54px; height: 54px; border-radius: 50%; margin-bottom: 12px; }
+.stats-row { display: flex; gap: 32px; justify-content: center; }
+.stats-card {
+  background: #29b6f6;
+  color: #fff;
+  border-radius: 14px;
+  padding: 22px 14px;
+  box-shadow: 0 2px 10px #1113;
+  font-size: 1.2em;
+}
+.academic-programs-home { padding: 18px 0; }
+.academic-grid { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.academic-card {
+  background: #e1f3ff;
+  border-radius: 12px;
+  padding: 14px;
+  min-width: 180px;
+  text-align: left;
+}
+.gallery-section, .video-gallery-section { padding: 18px 0; }
+.gallery-filters { text-align: center; margin-bottom: 24px; }
+.gallery-filters button {
+  background: #e0eafc; color: #1565c0; border: none; padding: 8px 18px; border-radius: 16px; font-weight: 600; cursor: pointer; margin: 0 4px;
+}
+.gallery-filters button.active { background: #29b6f6; color: #fff; }
+.gallery-grid { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; }
+.gallery-card {
+  background: #f5fcff; border-radius: 9px; padding: 12px 9px; box-shadow: 0 2px 10px #135edb22; max-width: 220px; text-align: center;
+}
+.gallery-card img { width: 100%; border-radius: 7px; }
+.gallery-title { font-size: 1em; font-weight: 600; margin: 8px 0 4px; }
+.notice-board-section { padding: 18px 0; }
+.notice-filters { margin-bottom: 24px; text-align: center; }
+.notice-filters button {
+  background: #e0eafc; color: #1565c0; border: none; padding: 8px 18px; border-radius: 16px; font-weight: 600; cursor: pointer; margin: 0 4px;
+}
+.notice-filters button.active { background: #29b6f6; color: #fff; }
+.notice-list { display: flex; flex-direction: column; gap: 18px; }
+.notice-card {
+  background: #f9faff; border-radius: 11px; padding: 12px 14px; box-shadow: 0 2px 10px #bbb3;
+}
+.notice-date { color: #1565c0; font-weight: 600; font-size: 0.96em; }
+.notice-title { font-weight: 700; margin-bottom: 3px; }
+.notice-category { color: #777; font-size: .9em; }
+.testimonial-section { padding: 18px 0; }
+.testimonial-form label { display: block; margin: 11px 0 4px; }
+.testimonial-form input,.testimonial-form textarea,.testimonial-form select {
+  width: 99%; padding: 8px; border-radius: 5px; border: 1px solid #bbb;
+}
+.testimonial-form button { background: #29b6f6; color: #fff; border: none; padding: 9px 25px; border-radius: 20px; font-size: 1em; margin-top: 8px; cursor: pointer; }
+.admission-form-section { padding: 18px 0; }
+.admission-form label { display: block; margin: 9px 0 4px; }
+.admission-form input,.admission-form textarea,.admission-form select {
+  width: 98%; padding: 8px; border-radius: 5px; border: 1px solid #bbb;
+}
+.admission-form button { background: #29b6f6; color: #fff; border: none; padding: 10px 30px; border-radius: 20px; font-size: 1em; margin-top: 8px; cursor: pointer; }
+.contact-section { padding: 18px 0; }
+.contact-form label { display: block; margin: 11px 0 4px; }
+.contact-form input,.contact-form textarea,.contact-form select {
+  width: 99%; padding: 8px; border-radius: 5px; border: 1px solid #bbb;
+}
+.contact-form button { background: #29b6f6; color: #fff; border: none; padding: 10px 30px; border-radius: 20px; font-size: 1em; margin-top: 8px; cursor: pointer; }
+.dev-projects-grid { display: flex; flex-wrap: wrap; gap: 22px; justify-content: center; }
+.dev-project-card {
+  background: #e3f2fd; border-radius: 10px; padding: 14px 12px; box-shadow: 0 2px 10px #29b6f650; min-width: 220px; text-align: left;
+}
+.see-all-btn { display: inline-block; background: #29b6f6; color: #fff; border-radius: 19px; padding: 8px 22px; font-weight: bold; text-decoration: none; margin: 12px 0; }
+.modal {
+  position: fixed;
+  left:0; top:0; right:0; bottom:0;
+  background: rgba(40,80,120,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 34px 20px;
+  box-shadow: 0 4px 20px #1113;
+  min-width: 340px;
+  max-width: 90vw;
+}
+/* Login/Register/Portal sections */
+#principal-login-section, #student-login-section, #parent-login-section, #staff-login-section {
+  max-width: 380px; margin: 38px auto; background: #f7fafd; border-radius: 14px; padding: 32px; box-shadow: 0 2px 14px #135edb22;
+}
+#principal-dashboard, #student-dashboard, #parent-dashboard, #staff-dashboard {
+  padding: 22px;
+  background: #f7fafd;
+  border-radius: 16px;
+  box-shadow: 0 2px 14px #135edb22;
+  margin-top: 28px;
+}
+@media(max-width:640px){
+  main{padding:16px 5px;}
+  .portal-card-grid,.faculty-grid,.academic-grid,.gallery-grid,.video-grid,.dev-projects-grid{flex-direction:column;align-items:center;}
+  .portal-card,.faculty-card,.academic-card,.gallery-card,.dev-project-card{width:95%;}
+  .stats-row{flex-direction:column;}
+}
+
+
+
+
+
+
+
+
+/* Both for .hero-imgs and #rotating-images */
+.hero-imgs, #rotating-images {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  height: 290px;
+}
+.hero-imgs img, #rotating-images img {
+  max-width: 100%;
+  max-height: 290px;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px #29b6f680;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0; margin: auto;
+}
+
+
+.hero-imgs, #rotating-images { ... }
+.message-block, #message-block { ... }
+.faculty-list, #faculty-list { ... }
+.faculty-grid, #faculty-grid { ... }
+/* ...and so on for every major section seen in your HTML */
+
+
+
+
+
+#rotating-images { /* Same as .hero-imgs above */ }
+.principal-message {
+  margin-top: 32px;
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 14px #29b6f680;
+}
+.message-block {
+  display: flex; gap: 24px; align-items: flex-start; margin-bottom: 10px;
+}
+.message-block img {
+  width: 90px; border-radius: 50%; margin-right: 16px;
+}
+.message-row { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 10px; }
+.faculty-list { padding: 18px 0; }
+.faculty-grid { display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; }
+.faculty-card {
+  background: #f5fcff;
+  border-radius: 12px;
+  padding: 14px 14px;
+  box-shadow: 0 2px 14px #135edb33;
+  width: 185px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.faculty-img { width: 70px; border-radius: 50%; margin-bottom: 10px; }
+
+
+
+    </style>
+   
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            
+        </nav>
+    </header>
+    <main>
+        <section class="developer-section">
+            <h1>Developer Profile</h1>
+            <div class="developer-info-block">
+                <div id="developer-rotating-images" class="developer-images">
+                    <img src="/images/others/sas.jpg" alt="Malik Sheraz Hadi" style="display:block;">
+                    <img src="/images/others/ssa.jpg" alt="Malik Sheraz Hadi">
+                    <img src="/images/others/ssasa.jpg" alt="Malik Sheraz Hadi">
+                    <img src="/images/others/ssasds.jpg" alt="Malik Sheraz Hadi">
+                    <img src="/images/others/sss.jpg" alt="Malik Sheraz Hadi">
+                    <img src="/images/others/ssds.jpg" alt="Malik Sheraz Hadi">
+                    
+                    <!-- Add/replace images as needed -->
+                </div>
+                <div class="developer-details">
+                    <h2>Malik Sheraz Hadi</h2>
+                    <span>AI Specialist | Web Developer</span>
+                    <p>
+                        Building intelligent solutions and stunning websites.<br>
+                        Passionate about AI research and creating digital experiences that make an impact.
+                    </p>
+                    <a class="see-all-btn" href="https://maliksherazhadiwebsite.netlify.app/" target="_blank">View My Work - Personal Website</a>
+                </div>
+            </div>
+        </section>
+        <section class="developer-projects">
+            <h2>Portfolio Projects</h2>
+            <div class="dev-projects-grid">
+                <div class="dev-project-card">
+                    <b>Responsive Portfolio</b>
+                    <div>Modern, responsive static portfolio built with HTML, CSS, and vanilla JS.</div>
+                    <a href="https://maliksherazportfolio.netlify.app/" target="_blank">View →</a>
+                </div>
+                <div class="dev-project-card">
+                    <b>Challenger's Computer Skill Centre Skardu</b>
+                    <div>AI-powered remote learning platform in Gilgit-Baltistan.</div>
+                    <a href="https://challengercomputerskillcentre.netlify.app/" target="_blank">View Project →</a>
+                </div>
+                <div class="dev-project-card">
+                    <b>Student Registration App (Python)</b>
+                    <div>Desktop system for student data with Tkinter and CSV.</div>
+                    <a href="https://github.com/Malik-Sheraz-Hadi/Student-Registration" target="_blank">View →</a>
+                </div>
+                <div class="dev-project-card">
+                    <b>Fitness Club</b>
+                    <div>Responsive website for workout programs, trainers, and memberships.</div>
+                    <a href="https://malikfitnessclub.netlify.app/" target="_blank">View →</a>
+                </div>
+                <div class="dev-project-card">
+                    <b>Weather Dashboard</b>
+                    <div>Current weather and 7-day forecasts with OpenWeatherMap API.</div>
+                    <a href="https://maliksweatherdashboardwebsite.netlify.app/" target="_blank">View →</a>
+                </div>
+                <div class="dev-project-card">
+                    <b>Snake Game (Python)</b>
+                    <div>Classic Snake game using Tkinter.</div>
+                    <a href="https://github.com/Malik-Sheraz-Hadi/Snake-Game-Python" target="_blank">View →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('#developer-rotating-images img');
+    let idx = 0;
+    setInterval(() => {
+      images.forEach((img, i) => img.style.display = i === idx ? 'block' : 'none');
+      idx = (idx + 1) % images.length;
+    }, 6000); // 6 seconds
+});
+
+</script>
+</html>

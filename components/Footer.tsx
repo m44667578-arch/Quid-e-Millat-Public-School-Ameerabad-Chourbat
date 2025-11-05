@@ -36,8 +36,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
           </div>
         </div>
         <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Quaid-e-Millat Public School. All rights reserved.</p>
-          <p> <strong>Developer : Malik Sheraz Hadi </strong>- AI Specialist and Web Developer.</p>
+          <p>&copy; {new Date().getFullYear()} Quaid-e-Millat Public School || All rights reserved.</p>
+          <p> <strong>Developer : <a href="https://maliksherazhadiwebsite.netlify.app/">  Malik Sheraz Hadi  </a> </strong>- AI Specialist and Web Developer.</p>
       
         </div>
       </div>

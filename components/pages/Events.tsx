@@ -8,7 +8,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2024-03-15',
     description: 'A day of thrilling athletic competitions, teamwork, and sportsmanship.',
     detailedDescription: 'Join us to cheer on our young athletes in a variety of track and field events. The day will conclude with a prize distribution ceremony to honor the winners and participants. Refreshments will be available for all attendees.',
-    mediaUrl: '/public/images/gallery/image/sportweek2.jpg',
+    mediaUrl: '/images/gallery/image/sportweek2.jpg',
     mediaType: 'image',
   },
   {
@@ -17,7 +17,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2024-04-22',
     description: 'The blessed day on which the Last Prophet of Allah, Hazrat Muhammad (PBUH), was born. Muslims around the world celebrate this day with great respect and love to honor the life, character, and teachings of the Holy Prophet (PBUH).',
     detailedDescription: 'This sacred day reminds us of the values taught by the Prophet Muhammad (PBUH) peace, kindness, justice, patience, humility, and love for humanity. Muslims offer naat, recite Durood-o-Salam, arrange gatherings of remembrance, distribute food, and perform acts of charity to follow the Sunnah of the Prophet (PBUH).',
-    mediaUrl: '/public/images/events/video/Eid milaadun nabi.mp4',
+    mediaUrl: '/images/events/video/Eid milaadun nabi.mp4',
     mediaType: 'video',
   },
   {
@@ -26,7 +26,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2024-05-10',
     description: 'A vibrant celebration of diversity, art, and culture with performances from students.',
     detailedDescription: 'Experience a mesmerizing evening of music, dance, and drama as our students showcase their talents. The Cultural Fest is a celebration of our diverse heritage and a testament to the creativity of our students. The event will be held in the school auditorium.',
-    mediaUrl: '/public/images/events/image/cultural image3.jpg',
+    mediaUrl: '/images/events/image/cultural image3.jpg',
     mediaType: 'image',
   },
    {
@@ -35,7 +35,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2025-06-05',
     description: 'An opportunity for parents and teachers to discuss student progress.',
     detailedDescription: 'This conference is a crucial touchpoint for parents and teachers to collaborate for the student\'s academic and personal growth. We encourage all parents to attend their scheduled slots to have a productive discussion about their child\'s performance and development.',
-    mediaUrl: 'https://picsum.photos/800/450?image=1025',
+    mediaUrl: '',
     mediaType: 'image',
   },
 ];
