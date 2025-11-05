@@ -61,7 +61,7 @@ const App: React.FC = () => {
       name: 'Principal',
       title: "Principal's Message",
       message: "We are committed to providing a safe, nurturing environment where every student can achieve their full potential.",
-      imageUrl: "/public/images/gallery/image/chacha.jpg",
+      imageUrl: "/images/gallery/image/chacha.jpg",
     },
     {
       id: 'vice-principal',
