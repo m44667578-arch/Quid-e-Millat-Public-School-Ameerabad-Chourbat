@@ -589,135 +589,135 @@ const Admission: React.FC<AdmissionProps> = ({ onAdmissionSubmit }) => {
     }
   };
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setStatusMessage("");
-  //   setSending(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatusMessage("");
+    setSending(true);
 
-  //   if (!formRef.current) {
-  //     setStatusMessage("Form not ready.");
-  //     setSending(false);
-  //     return;
-  //   }
+    if (!formRef.current) {
+      setStatusMessage("Form not ready.");
+      setSending(false);
+      return;
+    }
 
-  //   try {
-  //     const res = await emailjs.sendForm(
-  //       EMAILJS_SERVICE_ID,
-  //       EMAILJS_TEMPLATE_ID,
-  //       formRef.current,
-  //       EMAILJS_PUBLIC_KEY
-  //     );
-
-  //     if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
-  //       // convert formData shape to the app shape expected by parent callback
-  //       onAdmissionSubmit({
-  //         fullName: formData.full_name,
-  //         guardianName: formData.guardian_name,
-  //         dob: formData.dob,
-  //         grade: formData.grade,
-  //         previousSchool: formData.previous_school,
-  //         address: formData.address,
-  //         whatsappNumber: formData.whatsapp_number,
-  //         email: formData.email,
-  //       });
-
-  //       setStatusMessage("Admission form submitted successfully. Details sent to admin email.");
-  //       // reset form UI
-  //       formRef.current.reset();
-  //       setFormData({
-  //         full_name: "",
-  //         guardian_name: "",
-  //         dob: "",
-  //         grade: Grade.PlayGroup,
-  //         previous_school: "",
-  //         address: "",
-  //         whatsapp_number: "",
-  //         email: "",
-  //       });
-  //     } else {
-  //       console.error("EmailJS unexpected response:", res);
-  //       setStatusMessage("Submission sent but received unexpected response. Check console for details.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to send admission form:", error);
-  //     setStatusMessage("Failed to send admission form. Please try again.");
-  //   } finally {
-  //     setSending(false);
-  //   }
-  // };
-
-
-
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setStatusMessage("");
-  setSending(true);
-
-  if (!formRef.current) {
-    setStatusMessage("Form not ready.");
-    setSending(false);
-    return;
-  }
-
-  try {
-    // 1️⃣ Send to ADMIN
-    const res = await emailjs.sendForm(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      formRef.current,
-      EMAILJS_PUBLIC_KEY
-    );
-
-    if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
-      // Send data to parent component
-      onAdmissionSubmit({
-        fullName: formData.full_name,
-        guardianName: formData.guardian_name,
-        dob: formData.dob,
-        grade: formData.grade,
-        previousSchool: formData.previous_school,
-        address: formData.address,
-        whatsappNumber: formData.whatsapp_number,
-        email: formData.email,
-      });
-
-      // ✅ 2️⃣ Send Welcome Email to the Sender
-      await emailjs.send(
-        template_sepkrab,
-        EMAILJS_WELCOME_TEMPLATE_ID,
-        {
-          full_name: formData.full_name,
-          form_type: "Admission Form",
-          email: formData.email,
-        },
+    try {
+      const res = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
         EMAILJS_PUBLIC_KEY
       );
 
-      setStatusMessage("✅ Admission form submitted successfully. Confirmation email sent!");
-      
-      // Reset the form
-      formRef.current.reset();
-      setFormData({
-        full_name: "",
-        guardian_name: "",
-        dob: "",
-        grade: Grade.PlayGroup,
-        previous_school: "",
-        address: "",
-        whatsapp_number: "",
-        email: "",
-      });
-    } else {
-      console.error("EmailJS unexpected response:", res);
-      setStatusMessage("Submission sent but received unexpected response.");
+      if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
+        // convert formData shape to the app shape expected by parent callback
+        onAdmissionSubmit({
+          fullName: formData.full_name,
+          guardianName: formData.guardian_name,
+          dob: formData.dob,
+          grade: formData.grade,
+          previousSchool: formData.previous_school,
+          address: formData.address,
+          whatsappNumber: formData.whatsapp_number,
+          email: formData.email,
+        });
+
+        setStatusMessage("Admission form submitted successfully. Details sent to admin email.");
+        // reset form UI
+        formRef.current.reset();
+        setFormData({
+          full_name: "",
+          guardian_name: "",
+          dob: "",
+          grade: Grade.PlayGroup,
+          previous_school: "",
+          address: "",
+          whatsapp_number: "",
+          email: "",
+        });
+      } else {
+        console.error("EmailJS unexpected response:", res);
+        setStatusMessage("Submission sent but received unexpected response. Check console for details.");
+      }
+    } catch (error) {
+      console.error("Failed to send admission form:", error);
+      setStatusMessage("Failed to send admission form. Please try again.");
+    } finally {
+      setSending(false);
     }
-  } catch (error) {
-    console.error("Failed to send admission form:", error);
-    setStatusMessage("Failed to send admission form. Please try again.");
-  } finally {
-    setSending(false);
-  }
-};
+  };
+
+
+
+//  const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+//   setStatusMessage("");
+//   setSending(true);
+
+//   if (!formRef.current) {
+//     setStatusMessage("Form not ready.");
+//     setSending(false);
+//     return;
+//   }
+
+//   try {
+//     // 1️⃣ Send to ADMIN
+//     const res = await emailjs.sendForm(
+//       EMAILJS_SERVICE_ID,
+//       EMAILJS_TEMPLATE_ID,
+//       formRef.current,
+//       EMAILJS_PUBLIC_KEY
+//     );
+
+//     if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
+//       // Send data to parent component
+//       onAdmissionSubmit({
+//         fullName: formData.full_name,
+//         guardianName: formData.guardian_name,
+//         dob: formData.dob,
+//         grade: formData.grade,
+//         previousSchool: formData.previous_school,
+//         address: formData.address,
+//         whatsappNumber: formData.whatsapp_number,
+//         email: formData.email,
+//       });
+
+//       // ✅ 2️⃣ Send Welcome Email to the Sender
+//       await emailjs.send(
+//         template_sepkrab,
+//         EMAILJS_WELCOME_TEMPLATE_ID,
+//         {
+//           full_name: formData.full_name,
+//           form_type: "Admission Form",
+//           email: formData.email,
+//         },
+//         EMAILJS_PUBLIC_KEY
+//       );
+
+//       setStatusMessage("✅ Admission form submitted successfully. Confirmation email sent!");
+      
+//       // Reset the form
+//       formRef.current.reset();
+//       setFormData({
+//         full_name: "",
+//         guardian_name: "",
+//         dob: "",
+//         grade: Grade.PlayGroup,
+//         previous_school: "",
+//         address: "",
+//         whatsapp_number: "",
+//         email: "",
+//       });
+//     } else {
+//       console.error("EmailJS unexpected response:", res);
+//       setStatusMessage("Submission sent but received unexpected response.");
+//     }
+//   } catch (error) {
+//     console.error("Failed to send admission form:", error);
+//     setStatusMessage("Failed to send admission form. Please try again.");
+//   } finally {
+//     setSending(false);
+//   }
+// };
 
 
 
