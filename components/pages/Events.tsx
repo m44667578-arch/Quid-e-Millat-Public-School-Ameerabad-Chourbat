@@ -19,6 +19,7 @@ export const eventsData: SchoolEvent[] = [
     detailedDescription: 'This sacred day reminds us of the values taught by the Prophet Muhammad (PBUH) peace, kindness, justice, patience, humility, and love for humanity. Muslims offer naat, recite Durood-o-Salam, arrange gatherings of remembrance, distribute food, and perform acts of charity to follow the Sunnah of the Prophet (PBUH).',
     mediaUrl: '/images/events/video/Eid.mp4',
     mediaType: 'video',
+    posterUrl: '/images/events/video/Eid.mp4',
   },
   {
     id: 3,
