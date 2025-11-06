@@ -21,6 +21,7 @@ export const eventsData: SchoolEvent[] = [
     mediaUrl: '/images/events/video/Eid.mp4',
     mediaType: 'video',
     posterUrl: '/images/events/video/Eid.mp4',
+
   },
   {
     id: 3,
