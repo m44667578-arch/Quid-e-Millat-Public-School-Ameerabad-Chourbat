@@ -33,6 +33,7 @@ export interface SchoolEvent {
   description: string;
   detailedDescription: string;
   mediaUrl?: string;
+  posterUrl : string;
   mediaType?: 'image' | 'video';
 }
 

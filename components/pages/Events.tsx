@@ -10,6 +10,7 @@ export const eventsData: SchoolEvent[] = [
     detailedDescription: 'Join us to cheer on our young athletes in a variety of track and field events. The day will conclude with a prize distribution ceremony to honor the winners and participants. Refreshments will be available for all attendees.',
     mediaUrl: '/images/gallery/image/sportweek2.jpg',
     mediaType: 'image',
+    posterUrl: '/images/gallery/image/sportweek2.jpg',
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ export const eventsData: SchoolEvent[] = [
     detailedDescription: 'Experience a mesmerizing evening of music, dance, and drama as our students showcase their talents. The Cultural Fest is a celebration of our diverse heritage and a testament to the creativity of our students. The event will be held in the school auditorium.',
     mediaUrl: '/images/events/image/cultural image3.jpg',
     mediaType: 'image',
+    posterUrl: '/images/events/image/cultural image3.jpg',
   },
    {
     id: 4,
@@ -38,6 +40,7 @@ export const eventsData: SchoolEvent[] = [
     detailedDescription: 'This conference is a crucial touchpoint for parents and teachers to collaborate for the student\'s academic and personal growth. We encourage all parents to attend their scheduled slots to have a productive discussion about their child\'s performance and development.',
     mediaUrl: 'f',
     mediaType: 'image',
+    posterUrl: '',
   },
 ];
 
