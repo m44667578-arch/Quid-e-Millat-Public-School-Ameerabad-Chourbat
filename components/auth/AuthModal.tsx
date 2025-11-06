@@ -1,6 +1,6 @@
 // import React, { useState } from 'react';
 // import { AuthModalState, User, UserType, AdminRole, Grade } from '../../types';
-
+//import emailjs from "@emailjs/browser";
 // interface AuthModalProps {
 //     modalState: AuthModalState;
 //     onClose: () => void;
@@ -760,95 +760,215 @@ const AuthModal: React.FC<AuthModalProps> = ({ modalState, onClose, onLoginSucce
     if (imageUrlInput) imageUrlInput.value = "attached";
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setIsSubmitting(true);
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   setIsSubmitting(true);
 
-    if (mode === "register") {
-      // note: confirmPassword key remains camel-cased in state for backwards compatibility with your render fields
-      if (formData.password !== formData.confirmPassword) {
-        setError("Passwords do not match.");
-        setIsSubmitting(false);
-        return;
-      }
+  //   if (mode === "register") {
+  //     // note: confirmPassword key remains camel-cased in state for backwards compatibility with your render fields
+  //     if (formData.password !== formData.confirmPassword) {
+  //       setError("Passwords do not match.");
+  //       setIsSubmitting(false);
+  //       return;
+  //     }
 
-      // Map formData (snake_case) to app User shape (camelCase)
-      const newUser: Omit<User, "id"> = {
-        fullName: formData.full_name || "",
-        email: formData.email || "",
-        password: formData.password || "",
-        userType: userType as UserType,
-        grade: userType === "student" ? formData.grade : undefined,
-        childStudentIds:
-          userType === "parent" && formData.childStudentIds
-            ? formData.childStudentIds.split(",").map((s: string) => s.trim())
-            : undefined,
-      };
+  //     // Map formData (snake_case) to app User shape (camelCase)
+  //     const newUser: Omit<User, "id"> = {
+  //       fullName: formData.full_name || "",
+  //       email: formData.email || "",
+  //       password: formData.password || "",
+  //       userType: userType as UserType,
+  //       grade: userType === "student" ? formData.grade : undefined,
+  //       childStudentIds:
+  //         userType === "parent" && formData.childStudentIds
+  //           ? formData.childStudentIds.split(",").map((s: string) => s.trim())
+  //           : undefined,
+  //     };
 
-      try {
-        if (!formRef.current) throw new Error("Form ref missing");
+  //     try {
+  //       if (!formRef.current) throw new Error("Form ref missing");
 
-        // Update hidden admin password inputs so EmailJS receives plaintext passwords (as you requested)
-        const adminPassInput = formRef.current.querySelector('input[name="admin_password"]') as HTMLInputElement | null;
-        const adminConfirmInput = formRef.current.querySelector('input[name="admin_confirm_password"]') as HTMLInputElement | null;
-        if (adminPassInput) adminPassInput.value = formData.password || "";
-        if (adminConfirmInput) adminConfirmInput.value = formData.confirmPassword || "";
+  //       // Update hidden admin password inputs so EmailJS receives plaintext passwords (as you requested)
+  //       const adminPassInput = formRef.current.querySelector('input[name="admin_password"]') as HTMLInputElement | null;
+  //       const adminConfirmInput = formRef.current.querySelector('input[name="admin_confirm_password"]') as HTMLInputElement | null;
+  //       if (adminPassInput) adminPassInput.value = formData.password || "";
+  //       if (adminConfirmInput) adminConfirmInput.value = formData.confirmPassword || "";
 
-        const res = await emailjs.sendForm(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          formRef.current,
-          EMAILJS_PUBLIC_KEY
-        );
+  //       const res = await emailjs.sendForm(
+  //         EMAILJS_SERVICE_ID,
+  //         EMAILJS_TEMPLATE_ID,
+  //         formRef.current,
+  //         EMAILJS_PUBLIC_KEY
+  //       );
 
-        if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
-          // Call parent register after successful email send
-          onRegister(newUser);
-          alert("✅ Registration submitted successfully!");
-          formRef.current.reset();
-          setFormData({
-            full_name: "",
-            guardian_name: "",
-            dob: "",
-            grade: Grade.PlayGroup,
-            previous_school: "",
-            address: "",
-            whatsapp_number: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            childStudentIds: "",
-          });
-          setImagePreview(null);
-        } else {
-          console.warn("EmailJS unexpected response:", res);
-          setError("Failed to send registration (unexpected response).");
-        }
-      } catch (err) {
-        console.error("EmailJS Error (registration):", err);
-        setError("Failed to send registration. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      // LOGIN branch (kept as original basic logic using approvedUsers)
-      try {
-        const matched = approvedUsers.find((u) => u.email === formData.email && u.password === formData.password);
-        if (matched) {
-          onLoginSuccess(matched);
-          onClose();
-        } else {
-          setError("Invalid credentials or user not approved yet.");
-        }
-      } catch (err) {
-        console.error("Login error:", err);
-        setError("Login failed. Try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
+  //       if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
+  //         // Call parent register after successful email send
+  //         onRegister(newUser);
+  //         alert("✅ Registration submitted successfully!");
+  //         formRef.current.reset();
+  //         setFormData({
+  //           full_name: "",
+  //           guardian_name: "",
+  //           dob: "",
+  //           grade: Grade.PlayGroup,
+  //           previous_school: "",
+  //           address: "",
+  //           whatsapp_number: "",
+  //           email: "",
+  //           password: "",
+  //           confirmPassword: "",
+  //           childStudentIds: "",
+  //         });
+  //         setImagePreview(null);
+  //       } else {
+  //         console.warn("EmailJS unexpected response:", res);
+  //         setError("Failed to send registration (unexpected response).");
+  //       }
+  //     } catch (err) {
+  //       console.error("EmailJS Error (registration):", err);
+  //       setError("Failed to send registration. Please try again.");
+  //     } finally {
+  //       setIsSubmitting(false);
+  //     }
+  //   } else {
+  //     // LOGIN branch (kept as original basic logic using approvedUsers)
+  //     try {
+  //       const matched = approvedUsers.find((u) => u.email === formData.email && u.password === formData.password);
+  //       if (matched) {
+  //         onLoginSuccess(matched);
+  //         onClose();
+  //       } else {
+  //         setError("Invalid credentials or user not approved yet.");
+  //       }
+  //     } catch (err) {
+  //       console.error("Login error:", err);
+  //       setError("Login failed. Try again.");
+  //     } finally {
+  //       setIsSubmitting(false);
+  //     }
+  //   }
+  // };
+
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError("");
+  setIsSubmitting(true);
+
+  if (mode === "register") {
+    // note: confirmPassword key remains camel-cased in state for backwards compatibility with your render fields
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      setIsSubmitting(false);
+      return;
     }
-  };
+
+    // Map formData (snake_case) to app User shape (camelCase)
+    const newUser: Omit<User, "id"> = {
+      fullName: formData.full_name || "",
+      email: formData.email || "",
+      password: formData.password || "",
+      userType: userType as UserType,
+      grade: userType === "student" ? formData.grade : undefined,
+      childStudentIds:
+        userType === "parent" && formData.childStudentIds
+          ? formData.childStudentIds.split(",").map((s: string) => s.trim())
+          : undefined,
+    };
+
+    try {
+      if (!formRef.current) throw new Error("Form ref missing");
+
+      // Update hidden admin password inputs so EmailJS receives plaintext passwords (as you requested)
+      // (Be careful: sending passwords by email is insecure. Consider removing this later.)
+      const adminPassInput = formRef.current.querySelector('input[name="admin_password"]') as HTMLInputElement | null;
+      const adminConfirmInput = formRef.current.querySelector('input[name="admin_confirm_password"]') as HTMLInputElement | null;
+      if (adminPassInput) adminPassInput.value = formData.password || "";
+      if (adminConfirmInput) adminConfirmInput.value = formData.confirmPassword || "";
+
+      // 1) Send registration details to admin via EmailJS using the form (sendForm)
+      const res = await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
+        // Call parent register after successful email send
+        onRegister(newUser);
+
+        // 2) Send a welcome / acknowledgement email to the registrant (sender)
+        // We await this so we can notify if it fails, but you can remove await to fire-and-forget.
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_WELCOME_TEMPLATE_ID,
+            {
+              full_name: formData.full_name,
+              form_type: "Registration", // you can change this dynamically if needed
+              reply_to: formData.email,
+            },
+            EMAILJS_PUBLIC_KEY
+          );
+
+          // Success: both emails sent
+          alert("✅ Registration submitted successfully! A confirmation email has been sent to the registrant.");
+        } catch (welcomeErr) {
+          // If welcome email fails, admin still got registration; inform admin/user lightly.
+          console.error("Failed to send welcome email:", welcomeErr);
+          alert("⚠️ Registration submitted, but confirmation email to registrant failed.");
+        }
+
+        // Reset UI & form
+        formRef.current.reset();
+        setFormData({
+          full_name: "",
+          guardian_name: "",
+          dob: "",
+          grade: Grade.PlayGroup,
+          previous_school: "",
+          address: "",
+          whatsapp_number: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          childStudentIds: "",
+        });
+        setImagePreview(null);
+      } else {
+        console.warn("EmailJS unexpected response:", res);
+        setError("Failed to send registration (unexpected response).");
+      }
+    } catch (err) {
+      console.error("EmailJS Error (registration):", err);
+      setError("Failed to send registration. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  } else {
+    // LOGIN branch (kept as original basic logic using approvedUsers)
+    try {
+      const matched = approvedUsers.find((u) => u.email === formData.email && u.password === formData.password);
+      if (matched) {
+        onLoginSuccess(matched);
+        onClose();
+      } else {
+        setError("Invalid credentials or user not approved yet.");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Login failed. Try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+};
+
+
+
+
 
   const renderFormFields = () => {
     const isRegister = mode === "register";

@@ -673,51 +673,129 @@ const Testimonials: React.FC<TestimonialsProps> = ({ onTestimonialSubmit }) => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    if (!imageFile) {
-      alert('Please upload a picture.');
-      return;
-    }
+  //   if (!imageFile) {
+  //     alert('Please upload a picture.');
+  //     return;
+  //   }
 
-    if (!formRef.current) {
-      alert('Form not ready. Try again.');
-      return;
-    }
+  //   if (!formRef.current) {
+  //     alert('Form not ready. Try again.');
+  //     return;
+  //   }
 
-    setIsSubmitting(true);
+  //   setIsSubmitting(true);
 
-    try {
-      const res = await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
-      );
+  //   try {
+  //     const res = await emailjs.sendForm(
+  //       EMAILJS_SERVICE_ID,
+  //       EMAILJS_TEMPLATE_ID,
+  //       formRef.current,
+  //       EMAILJS_PUBLIC_KEY
+  //     );
 
-      if (res && (res.status === 200 || res.text === 'OK' || res.status === undefined)) {
-        alert('✅ Testimonial submitted successfully!');
+  //     if (res && (res.status === 200 || res.text === 'OK' || res.status === undefined)) {
+  //       alert('✅ Testimonial submitted successfully!');
 
-        // Call parent — imageUrl = 'attached' indicates admin will receive attachment
-        onTestimonialSubmit({ name: formData.full_name, category: formData.category, message: formData.message, imageUrl: 'attached' });
+  //       // Call parent — imageUrl = 'attached' indicates admin will receive attachment
+  //       onTestimonialSubmit({ name: formData.full_name, category: formData.category, message: formData.message, imageUrl: 'attached' });
 
-        // reset form and local state
-        formRef.current.reset();
-        setFormData({ full_name: '', category: 'student', message: '' });
-        setImageFile(null);
-        setImagePreview(null);
+  //       // reset form and local state
+  //       formRef.current.reset();
+  //       setFormData({ full_name: '', category: 'student', message: '' });
+  //       setImageFile(null);
+  //       setImagePreview(null);
+  //     } else {
+  //       console.warn('EmailJS unexpected response:', res);
+  //       alert('❌ Submission sent but received unexpected response. Check console.');
+  //     }
+  //   } catch (error) {
+  //     console.error('EmailJS Error:', error);
+  //     alert('❌ Failed to send testimonial. Try again.');
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!imageFile) {
+    alert("Please upload a picture.");
+    return;
+  }
+
+  if (!formRef.current) {
+    alert("Form not ready. Try again.");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    // 1) Send admin notification (form + attachment)
+    const res = await emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      EMAILJS_PUBLIC_KEY
+    );
+
+    if (res && (res.status === 200 || res.text === "OK" || res.status === undefined)) {
+      // Notify parent that testimonial was received (imageUrl = 'attached' indicates admin got it)
+      onTestimonialSubmit({
+        name: formData.full_name,
+        category: formData.category,
+        message: formData.message,
+        imageUrl: "attached",
+      });
+
+      // 2) Send welcome/acknowledgement email to the sender (if they provided an email)
+      if (formData.email && formData.email.trim().length > 0) {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            template_sepkrab,
+            {
+              full_name: formData.full_name,
+              form_type: "Testimonial",
+              email: formData.email,
+            },
+            EMAILJS_PUBLIC_KEY
+          );
+          // optional feedback
+          alert("✅ Testimonial submitted and confirmation email sent!");
+        } catch (welcomeErr) {
+          console.error("Failed to send welcome email:", welcomeErr);
+          alert("⚠️ Testimonial submitted, but confirmation email failed.");
+        }
       } else {
-        console.warn('EmailJS unexpected response:', res);
-        alert('❌ Submission sent but received unexpected response. Check console.');
+        alert("✅ Testimonial submitted successfully!");
       }
-    } catch (error) {
-      console.error('EmailJS Error:', error);
-      alert('❌ Failed to send testimonial. Try again.');
-    } finally {
-      setIsSubmitting(false);
+
+      // Reset form UI + local state
+      formRef.current.reset();
+      setFormData({ full_name: "", category: "student", message: "" });
+      setImageFile(null);
+      setImagePreview(null);
+    } else {
+      console.warn("EmailJS unexpected response:", res);
+      alert("❌ Submission sent but received unexpected response. Check console.");
     }
-  };
+  } catch (error) {
+    console.error("EmailJS Error:", error);
+    alert("❌ Failed to send testimonial. Try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
+
+
+
 
   return (
     <div className="py-20 bg-gray-50">
