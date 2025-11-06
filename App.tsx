@@ -22,8 +22,8 @@ import { normalizeId } from './utils/string';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>(Page.Home);
-  const [studentCount, setStudentCount] = useState<number>(1250);
-  const [staffCount, setStaffCount] = useState<number>(75);
+  const [studentCount, setStudentCount] = useState<number>(950);
+  const [staffCount, setStaffCount] = useState<number>(14;
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [registrationMessage, setRegistrationMessage] = useState<string>('');
 

@@ -17,7 +17,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2024-04-22',
     description: 'The blessed day on which the Last Prophet of Allah, Hazrat Muhammad (PBUH), was born. Muslims around the world celebrate this day with great respect and love to honor the life, character, and teachings of the Holy Prophet (PBUH).',
     detailedDescription: 'This sacred day reminds us of the values taught by the Prophet Muhammad (PBUH) peace, kindness, justice, patience, humility, and love for humanity. Muslims offer naat, recite Durood-o-Salam, arrange gatherings of remembrance, distribute food, and perform acts of charity to follow the Sunnah of the Prophet (PBUH).',
-    mediaUrl: '/images/events/video/Eid milaadun nabi.mp4',
+    mediaUrl: '/images/events/video/Eid-milaadun-nabi.mp4',
     mediaType: 'video',
   },
   {
@@ -35,7 +35,7 @@ export const eventsData: SchoolEvent[] = [
     date: '2025-06-05',
     description: 'An opportunity for parents and teachers to discuss student progress.',
     detailedDescription: 'This conference is a crucial touchpoint for parents and teachers to collaborate for the student\'s academic and personal growth. We encourage all parents to attend their scheduled slots to have a productive discussion about their child\'s performance and development.',
-    mediaUrl: '',
+    mediaUrl: 'f',
     mediaType: 'image',
   },
 ];
