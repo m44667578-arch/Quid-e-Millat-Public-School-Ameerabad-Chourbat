@@ -190,7 +190,7 @@ const Home: React.FC<HomeProps> = ({ studentCount, staffCount, openAuthModal, re
                 <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/images/others/examhall2.jpg" alt="Exam Hall"/></div>
                 <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/images/others/result1.jpg" alt="Result Day"/></div>
                 <div className="h-64"><img className="w-full h-full object-cover rounded-lg shadow-md" src="/images/others/result5.jpg" alt="Prize Getting"/></div>
-                <div className="h-64"><video className="w-full h-full object-cover rounded-lg shadow-md" src="/images/events/video/Edi.mp4" controls="autoplay"></video></div>
+                {/* <div className="h-64"><video className="w-full h-full object-cover rounded-lg shadow-md" src="/images/events/video/Edi.mp4" controls="autoplay"></video></div> */}
             </div>
         </div>
       </section>
